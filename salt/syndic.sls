@@ -1,5 +1,5 @@
 {%- from "salt/map.jinja" import master, syndic with context %}
-{%- if syndic.enabled %}
+{%- if syndic.get('enabled', False) %}
 
 include:
 - salt.master.service
@@ -69,6 +69,13 @@ salt_syndic_master_sync_keys:
 {%- endfor %}
 
 {%- endif %}
+
+{%- else %}
+
+salt_syndic_service:
+  service.running:
+  - name: {{ syndic.service }}
+  - enable: false
 
 {%- endif %}
 
