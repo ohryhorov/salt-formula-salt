@@ -73,7 +73,7 @@ salt_syndic_master_sync_keys:
 {%- else %}
 
 salt_syndic_service:
-  service.running:
+  service.dead:
   - name: {{ syndic.service }}
   - enable: false
 
